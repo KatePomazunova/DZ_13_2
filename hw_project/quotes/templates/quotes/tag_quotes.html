@@ -1,0 +1,28 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+<div>
+    <ul>
+        {% for quote in quotes %}
+        <li>
+            <div>
+                <label>Quote:</label> {{ quote.quote }}
+            </div>
+            <div>
+                <label>Author:</label> {{ quote.author.fullname }}
+            </div>
+            <div>
+                <label>Tags:</label>
+                <ul>
+                    {% for tag in quote.tags.all %}
+                    <li>
+                        <a href="{% url 'quotes:tag_quotes' tag=tag.name %}">{{ tag.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
